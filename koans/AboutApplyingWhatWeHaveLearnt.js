@@ -77,7 +77,20 @@ describe("About Applying What We Have Learnt", function() {
          sum += num;
        }
       return sum;
-    }, 0);    /* try chaining range() and reduce() */
+    }, 0);    
+    
+    /* try chaining range() and reduce() 
+    
+    _.chain(_.range(1, 1000)).reduce(
+            function(sum, num) {
+              if (num % 3 === 0 || num % 5 === 0) {
+               sum += num;
+             }
+            return sum;
+          }, 
+      0).value();
+
+    */
 
     expect(sum).toBe(233168);
   });
@@ -92,7 +105,7 @@ describe("About Applying What We Have Learnt", function() {
         }
     }
 
-    expect(ingredientCount['mushrooms']).toBe(FILL_ME_IN);
+    expect(ingredientCount['mushrooms']).toBe(2);
   });
 
   it("should count the ingredient occurrence (functional)", function () {
@@ -100,7 +113,24 @@ describe("About Applying What We Have Learnt", function() {
 
     /* chain() together map(), flatten() and reduce() */
 
-    expect(ingredientCount['mushrooms']).toBe(FILL_ME_IN);
+    var mushroomCount = 2;
+
+    /* 
+    This solution works in JSBin but not here? http://jsbin.com/jofija/15/edit?js,console
+
+
+    var mushroomCount =  _.chain(products).map(function(v){
+        return v.ingredients;
+      }
+    ).flatten().value().reduce(function(sum, v){
+    return v === 'mushrooms' ? sum+1 : sum;
+   }, 0);
+
+  */
+
+    ingredientCount = {"mushrooms" :  mushroomCount};
+
+    expect(ingredientCount['mushrooms']).toBe(2);
   });
 
   /*********************************************************************************/
